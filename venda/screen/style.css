@@ -1,5 +1,7 @@
 html, body, .container {
-    height: 100%;
+    height: auto;
+    width: 100%;
+    min-width: 1440;
     margin: 0;
 }
 
