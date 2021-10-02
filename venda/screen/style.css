@@ -1,12 +1,11 @@
 html, body, .container {
-    height: auto;
-    width: 100%;
-    min-width: 1440;
+    height: 100%;
     margin: 0;
 }
 
 body {
-    width: 1440px;
+    width: 100%;
+    min-width: 1440px;
 }
 
 ::-webkit-scrollbar {
