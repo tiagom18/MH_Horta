@@ -1,4 +1,4 @@
-<?php include("D:/xampp/htdocs/aulas/MH_Horta/model/conexao.php");
+<?php include('../model/conexao.php');
 
 ?>
 <!DOCTYPE html>
