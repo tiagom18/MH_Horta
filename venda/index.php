@@ -1,7 +1,6 @@
 <?php
-    include("D:/xampp/htdocs/aulas/MH_Horta/model/conexao.php");
+    include("../model/conexao.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
