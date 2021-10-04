@@ -1,8 +1,24 @@
 
 <?php
-//Header
-include_once 'includes/header.php';
+    //Header
+    include_once 'includes/header.php';
+    //conexao com o banco de dados
+    include '../model/conexao.php';
+    //Alimentacao do select com PDO
+    $sql = " SELECT nome FROM mh_produto";
+   
+   
+    try {
+        $stmt = $conexao -> prepare($sql);
+        $stmt -> execute();
+        $results = $stmt -> fetchAll();
+    }
+    catch(Exception $ex){
+        echo ($ex -> getMessage());
+
+    }
 ?>
+<link rel="stylesheet" href="../login/screen/style.css">
 <div class="row">
     <div class="col s12 m6 push-m3">
         <h3 class="light">Pedido - Venda Nº X</h3>
@@ -40,23 +56,27 @@ include_once 'includes/header.php';
     <span class="close">&times;</span>
 </p>
 
-    <label ><b>ID</b></label>
-    <input type="text" placeholder="Coloque o ID" >
 
-    <label ><b>Produto</b></label>
-    <input type="text" placeholder="Escolha o Produto">
+   
+    <label for="produto"><b>Produto</b>
+                        <select id="nome" name="nome" style="display: block;">
+                            <option value="">Selecione o Produto</option>
+                            <?php foreach ($results as $output) {?>
+                              <option value="<?php echo $output["nome"];?>"><?php echo $output["nome"];?></option>  
+                              <?php } ?>
+                        </select>
+                        </label>              
+                            
 
-    <label for="psw"><b>Valor</b></label>
-    <input type="text" placeholder="Coloque o Valor">
 
-    <label for="psw"><b>Quantidade</b></label>
+    <label ><b>Quantidade</b></label>
     <input type="text" placeholder="Coloque a Quantidade">
 
-    <label for="psw"><b>Valor Total</b></label>
-    <input type="text" placeholder="Valor Total">
+    
     
     <button type="submit" class="btn">Inserir</button>
   </form>
+  
 </div>
 </div>
 

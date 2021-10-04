@@ -10,7 +10,7 @@
         $stmt -> execute();
         $results = $stmt -> fetchAll();
     }
-    catch(Exeption $ex){
+    catch(Exception $ex){
         echo ($ex -> getMessage());
 
     }
@@ -28,9 +28,9 @@
         <div class="col s12 m6 push-m3">
                 <h3 class="light">Inserir Produto</h3>
                 <form>
-                        <label for="produto">Nome:</label>
+                        
                         <select id="produto" name="produto">
-                            <option>****</option>
+                            <option>Produto</option>
                             <?php foreach($results as $output) {?>
                             <option><?php echo $output["nome"];?></option>
                             <?php } ?>
