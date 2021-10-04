@@ -1,36 +1,50 @@
 <?php
-//Header
-include_once 'includes/header.php';
+    //Header
+    include_once 'includes/header.php';
+    //conexao com o banco de dados
+    include '../model/conexao.php';
+    //Alimentacao do select com PDO
+    $sql = " SELECT nome FROM mh_produto";
+    try {
+        $stmt = $conexao -> prepare($sql);
+        $stmt -> execute();
+        $results = $stmt -> fetchAll();
+    }
+    catch(Exeption $ex){
+        echo ($ex -> getMessage());
+
+    }
 ?>
-<div class="row">
-    <div class="col s12 m6 push-m3">
-        <div class="form-popup" id="in-form">
-            <form action="" class="form-container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserir</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col s12 m6 push-m3">
                 <h3 class="light">Inserir Produto</h3>
-                
-                <div class="input-field col s12">
-                    <input type=text name="nome" id="nome">
-                    <label for="nome">Produto</label>
-                </div>
-
-                <div class="input-field col s12">
-                    <input type=text name="qtd" id="qtd">
-                    <label for="qtd">Qtd.</label>
-                </div>
-                
-                <div class="input-field col s12">
-                    <input type=text name="valor" id="valor">
-                    <label for="valor">Valor</label>
-                </div>
-                <button class="btn blue">Inserir</button>
-                <a href="index.php"class="btn red">Cancelar</a>
-            </form>
+                <form>
+                        <label for="produto">Nome:</label>
+                        <select id="produto" name="produto">
+                            <option>****</option>
+                            <?php foreach($results as $output) {?>
+                            <option><?php echo $output["nome"];?></option>
+                            <?php } ?>
+                        </select>
+                    <br>
+                    <button class="btn blue">Inserir</button>
+                    <a href="index.php"class="btn red">Cancelar</a>
+                </form>
+            <br>
+            <a  href="" class="btn green">Voltar ao painel de Venda</a>
         </div>
-        <br>
-        <a  href="" class="btn green">Voltar ao painel de Venda</a>
     </div>
-</div>
-
+</body>
+</html>
 <?php
 //Footer
 include_once 'includes\footer.php';
