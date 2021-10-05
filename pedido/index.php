@@ -7,7 +7,7 @@
     //Alimentacao do select com PDO
     $sql = " SELECT nome FROM mh_produto";
    
-   
+ 
     try {
         $stmt = $conexao -> prepare($sql);
         $stmt -> execute();
@@ -16,6 +16,23 @@
     catch(Exception $ex){
         echo ($ex -> getMessage());
 
+    }  
+?>
+<?php
+    $query_produtos = "SELECT id_Produto,valor,nome FROM mh_produto";
+    $result_produto = $conn->prepare($query_produtos);
+    $result_produto->execute();
+
+    if(($result_produto) AND ($result_produto->rowCount() != 0)){
+        while($row_produto = $result_produto->fetch(PDO::FETCH_ASSOC)){
+            
+            extract($row_produto);
+            echo "ID: $id_Produto <br>";
+            echo "Valor: $valor <br>";
+            echo "Nome: $nome <br>" ;
+        }
+    }else{
+        echo "Produto não encontrado";
     }
 ?>
 <link rel="stylesheet" href="../login/screen/style.css">
@@ -34,10 +51,25 @@
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php
+    $query_produtos = "SELECT id_Produto,valor,nome FROM mh_produto";
+    $result_produto = $conn->prepare($query_produtos);
+    $result_produto->execute();
+
+    if(($result_produto) AND ($result_produto->rowCount() != 0)){
+        while($row_produto = $result_produto->fetch(PDO::FETCH_ASSOC)){
+            
+            extract($row_produto);
+            echo "ID: $id_Produto <br>";
+            echo "<hr>";
+        }
+    }else{
+        echo "Produto não encontrado";
+    }
+?></td>
+                    <td><?php echo $_POST["nome"] ?></td>
+                    <td><?php echo $_POST["quantidade"] ?></td>
+                    <td><?php ?></td>
                     <td></td>
                     <td><a href="" class="btn-floating green"><i class="material-icons">edit</i></a></td>
                     <td><a href="" class="btn-floating green"><i class="material-icons">delete</i></a></td>
@@ -59,6 +91,7 @@
 
    
     <label for="produto"><b>Produto</b>
+    <form action="./" method="POST">
                         <select id="nome" name="nome" style="display: block;">
                             <option value="">Selecione o Produto</option>
                             <?php foreach ($results as $output) {?>
@@ -70,12 +103,12 @@
 
 
     <label ><b>Quantidade</b></label>
-    <input type="text" placeholder="Coloque a Quantidade">
-
+    <input type="text" placeholder="Coloque a Quantidade" name="quantidade" style="display: block;">
+                  
     
     
     <button type="submit" class="btn">Inserir</button>
-  </form>
+                            </form>
   
 </div>
 </div>
