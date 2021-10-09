@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../model/screen/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
             <p>Alterar</p>
             <form>
                 <div class="cont-form">
-                    <label for="id">ID</label>
+                    <label for="id">IDaa</label>
                     <input id="id" name="id" type="number" value="">
                 </div>
                 <div class="cont-form">
