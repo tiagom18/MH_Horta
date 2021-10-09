@@ -7,7 +7,7 @@
             $_SESSION['senha'] = $_POST['senha'];
             header('Location: example.php');
         } else {
-            header('Location: ../screen/index.html');
+            header('Location: ../screen/index.php');
         }
     }
 ?>
