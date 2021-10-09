@@ -18,23 +18,6 @@
 
     }  
 ?>
-<?php
-    $query_produtos = "SELECT id_Produto,valor,nome FROM mh_produto";
-    $result_produto = $conn->prepare($query_produtos);
-    $result_produto->execute();
-
-    if(($result_produto) AND ($result_produto->rowCount() != 0)){
-        while($row_produto = $result_produto->fetch(PDO::FETCH_ASSOC)){
-            
-            extract($row_produto);
-            echo "ID: $id_Produto <br>";
-            echo "Valor: $valor <br>";
-            echo "Nome: $nome <br>" ;
-        }
-    }else{
-        echo "Produto não encontrado";
-    }
-?>
 <link rel="stylesheet" href="../login/screen/style.css">
 <div class="row">
     <div class="col s12 m6 push-m3">
@@ -49,24 +32,30 @@
                     <th>Valor Total</th>
                 </tr>
             </thead>
+            <?php
+try {
+ 
+    $stmt = $conexao->prepare("SELECT * FROM mh_produto");
+ 
+        if ($stmt->execute()) {
+            while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+                echo "<tr>";
+                echo "<td>".$rs->id_Produto."</td><td>".$rs->nome."</td><td></td><td>".$rs->valor
+                           ."</td><td></td><td><center><a href=\"\">[Alterar]</a>"
+                           ."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                           ."<a href=\"\">[Excluir]</a></center></td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "Erro: Não foi possível recuperar os dados do banco de dados";
+        }
+} catch (PDOException $erro) {
+    echo "Erro: ".$erro->getMessage();
+}
+?>
             <tbody>
                 <tr>
-                    <td><?php
-    $query_produtos = "SELECT id_Produto,valor,nome FROM mh_produto";
-    $result_produto = $conn->prepare($query_produtos);
-    $result_produto->execute();
-
-    if(($result_produto) AND ($result_produto->rowCount() != 0)){
-        while($row_produto = $result_produto->fetch(PDO::FETCH_ASSOC)){
-            
-            extract($row_produto);
-            echo "ID: $id_Produto <br>";
-            echo "<hr>";
-        }
-    }else{
-        echo "Produto não encontrado";
-    }
-?></td>
+                    <td></td>
                     <td><?php echo $_POST["nome"] ?></td>
                     <td><?php echo $_POST["quantidade"] ?></td>
                     <td><?php ?></td>
