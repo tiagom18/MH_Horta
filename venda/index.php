@@ -1,5 +1,6 @@
 <?php
     include("../model/conexao.php");
+    include("../model/screen/index.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
