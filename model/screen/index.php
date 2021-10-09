@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include('../actions/conexao.php')
+    include('../model/conexao.php');
 ?>
 
 <!DOCTYPE html>
