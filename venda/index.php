@@ -73,6 +73,7 @@
                             $id_Cliente = $row["id_Cliente"];
                             
                             echo "<tr>";
+                            echo "<th></th>";
                             echo "<td> $id_Venda</td>";
                             echo "<td> $data_venda</td>";
                             echo "<td> $status</td>";
