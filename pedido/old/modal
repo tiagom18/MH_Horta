@@ -1,0 +1,36 @@
+ <!--inicio pop up-->
+    <div id="modal-update" class="cont-modal">
+        <div class="modal">
+            <button id="exit" class="btn-exit">
+                <img class="exit-img" src="https://i.postimg.cc/8zY4r6HD/close.png" alt="exit" border="0">
+            </button>
+            <div class="cont-info">
+                <span class="txt-form">Inserir</span>
+                <hr>
+                <form>
+                    <div class="form-id">
+                        <label for="id">ID</label>
+                        <input id="id" class="input-id" name="id" type="number" value="">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openModal(modalID) {
+            const modal = document.getElementById(modalID);
+                if(modal) {
+                    modal.classList.add('mostrar');
+                    modal.addEventListener('click', (event) => {
+                    if(event.target.id == modalID || event.target.className == 'exit-img') {
+                        modal.classList.remove('mostrar');
+                    }
+                })
+            }
+        }
+
+        const add = document.querySelector('.btn-add');
+        add.addEventListener('click', function() {
+            openModal('modal-update');
+        })
+    </script>

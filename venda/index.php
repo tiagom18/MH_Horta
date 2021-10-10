@@ -37,7 +37,7 @@
                         <img class="filter-img" src="https://i.ibb.co/6v6P822/filter.png" alt="filter" border="0">
                     </div>
                     <select class="filter-select"></select>
-                    <button class="btn-add"></button>
+                    <a href="inserir.php" class="btn-add" role="button"></a>
                 </div>
         </div>
         <div class="cont-02">
@@ -50,50 +50,48 @@
                         </label>
                     </th>
                     <th class="txt-id">ID</th>
-                    <th class="txt">Nome</th>
-                    <th class="txt">E-mail</th>
-                    <th class="txt">Celular</th>
+                    <th class="txt">Data</th>
+                    <th class="txt">Status</th>
+                    <th class="txt">Funcionario</th>
+                    <th class="txt">ID_horta</th>
+                    <th class="txt">ID_Cliente</th>
                     <th class="txt-actions">Actions</th>
                 </thead>
+                <tbody>
+                <?php
+                    try{
+                        $query = "SELECT * FROM mh_venda";
+
+                        $stmt = $conexao->prepare($query);
+                        $stmt->execute();
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            $id_Venda = $row["id_Venda"];
+                            $data_venda = $row["data_venda"];
+                            $status = $row["status"];
+                            $id_func = $row["id_func"];
+                            $id_Horta = $row["id_Horta"];
+                            $id_Cliente = $row["id_Cliente"];
+                            
+                            echo "<tr>";
+                            echo "<td> $id_Venda</td>";
+                            echo "<td> $data_venda</td>";
+                            echo "<td> $status</td>";
+                            echo "<td> $id_func</td>";
+                            echo "<td> $id_Horta </td>";
+                            echo "<td> $id_Cliente</td>";
+                  
+                            echo '<td><a href="exclusao.php?id='. $row["id_Venda"] . '">Excluir</a></td>';
+                            echo '<td><a href="form_alteracao.php?id='. $row["id_Venda"] . '">Alterar</a></td>';
+                            echo "</tr>";
+                        }
+                    } catch (PDOException $erro){
+                        echo 'Error: '.$erro->getMessage();
+                         }
+                    
+                ?>
+                </tbody>
             </table>
         </div>
-        <div class="cont-04"></div>
     </div>
-    <!--inicio pop up-->
-    <div id="modal-update" class="cont-modal">
-        <div class="modal">
-            <button id="exit" class="btn-exit">
-                <img class="exit-img" src="https://i.postimg.cc/8zY4r6HD/close.png" alt="exit" border="0">
-            </button>
-            <div class="cont-info">
-                <span class="txt-form">Inserir</span>
-                <hr>
-                <form>
-                    <div class="form-id">
-                        <label for="id">ID</label>
-                        <input id="id" class="input-id" name="id" type="number" value="">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script>
-        function openModal(modalID) {
-            const modal = document.getElementById(modalID);
-                if(modal) {
-                    modal.classList.add('mostrar');
-                    modal.addEventListener('click', (event) => {
-                    if(event.target.id == modalID || event.target.className == 'exit-img') {
-                        modal.classList.remove('mostrar');
-                    }
-                })
-            }
-        }
-
-        const add = document.querySelector('.btn-add');
-        add.addEventListener('click', function() {
-            openModal('modal-update');
-        })
-    </script>
 </body>
 </html>
