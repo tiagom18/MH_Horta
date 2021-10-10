@@ -66,7 +66,7 @@
                 <img class="exit-img" src="https://i.postimg.cc/8zY4r6HD/close.png" alt="exit" border="0">
             </button>
             <div class="cont-info">
-                <span class="txt-form">Alterar</span>
+                <span class="txt-form">Inserir</span>
                 <hr>
                 <form>
                     <div class="form-id">
@@ -95,6 +95,5 @@
             openModal('modal-update');
         })
     </script>
-<!--pegar os style das classes que eu copiei-->
 </body>
 </html>
