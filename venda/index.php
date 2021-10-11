@@ -1,6 +1,8 @@
 <?php
     include("../model/conexao.php");
     include("../model/screen/index.php");
+    include("../model/conexao.php");
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -43,12 +45,7 @@
         <div class="cont-02">
             <table class="cont-table">
                 <thead>
-                    <th>
-                        <label class="conectado">
-                            <input type="checkbox" value="conectado">
-                            <span class="checkmark"></span>
-                        </label>
-                    </th>
+                    
                     <th class="txt-id">ID</th>
                     <th class="txt">Data</th>
                     <th class="txt">Status</th>
@@ -73,7 +70,7 @@
                             $id_Cliente = $row["id_Cliente"];
                             
                             echo "<tr>";
-                            echo "<th></th>";
+                            
                             echo "<td> $id_Venda</td>";
                             echo "<td> $data_venda</td>";
                             echo "<td> $status</td>";
