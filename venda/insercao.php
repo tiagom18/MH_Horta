@@ -2,42 +2,48 @@
 <!-- inclusao.php -->
 <html>
 	<head>
-	  <title>Cadastro de curso - Inclusão</title>
+	  <title>Cadastro de Vendas</title>
 	  <meta charset="utf-8">
 	</head>
 	<body>
 <?php 
 // efetua inclusao do curso informado em cadatro_curso.html
 
-  $curso = $_GET["curso"];
-  $nr_carga_horaria = $_GET["nr_carga_horaria"];
-  $dt_inicio = $_GET["dt_inicio"];
+
+$data_venda = $_GET["datavenda"];
+$situacao = $_GET["situacao"];
+$id_func = $_GET["idfunc"];
+$id_Horta = $_GET["idhorta"];
+$id_Cliente = $_GET["idcliente"];
   
-  include_once "../inc/conectabd.inc.php";
+  
+  include("../model/conexao.php");
 
   try {
-	$query = "INSERT INTO tb_curso 
-	(ds_curso, nr_carga_horaria, dt_inicio) 
-	values (:curso, :nr_carga_horaria, :dt_inicio);";
+	$query = "INSERT INTO mh_venda
+	(datavenda, situacao, id_func, id_Horta, id_Cliente) 
+	values (:datavenda, :situacao, :id_func, :id_Horta, :id_Cliente);";
 
-	$stmt=$conn->prepare($query);
+	$stmt=$conexao->prepare($query);
 
-	$stmt->bindParam(":curso", $curso, PDO::PARAM_STR);
-	$stmt->bindParam(":nr_carga_horaria", $nr_carga_horaria, PDO::PARAM_INT );
-	$stmt->bindParam(":dt_inicio", $dt_inicio, PDO::PARAM_STR);
+	$stmt->bindParam(":datavenda", $datavenda, PDO::PARAM_STR);
+	$stmt->bindParam(":situacao", $situacao, PDO::PARAM_STR);
+	$stmt->bindParam(":id_func", $id_func, PDO::PARAM_STR);
+	$stmt->bindParam(":id_Horta", $id_Horta, PDO::PARAM_INT );
+	$stmt->bindParam(":id_Cliente", $id_Cliente, PDO::PARAM_STR);
 	$stmt->execute();
 	echo "Inclusão efetuada com sucesso";
 
 
-  } catch (PDOException $e) {
-	echo "ERRO:". $e->getMessage();
+  } catch (PDOException $erro) {
+	echo "ERRO:". $erro->getMessage();
   }
 
 
 
 ?>  
  <br>
- <a href="index.php">Ver cursos cadastrados</a>
+ <a href="index.php">Ver Vendas efetuadas</a>
  
  </body>
 </html>

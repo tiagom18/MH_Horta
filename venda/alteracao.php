@@ -2,39 +2,44 @@
 <!-- alteracao.php -->
 <html>
 	<head>
-	  <title>Cadastro de curso - Alteração</title>
+	  <title>Cadastro de vendas - Alteração</title>
 	  <meta charset="utf-8">
 	</head>
 	<body>
 <?php 
 // efetua alteração do curso informado em form_alteracao.php
-  $id = $_GET["id"];
-  $curso = $_GET["curso"];
-  $nr_carga_horaria = $_GET["nr_carga_horaria"];
-  $dt_inicio = $_GET["dt_inicio"];
-  
-  include_once "../inc/conectabd.inc.php";
+  $id_Venda = $_GET["id"];
+  $data_venda = $_GET["datavenda"];
+  $situacao = $_GET["situacao"];
+  $id_func = $_GET["idfunc"];
+  $id_Horta = $_GET["idhorta"];
+  $id_Cliente = $_GET["idclient"];
+  include("../model/conexao.php");
 
   try{
-    $query = "UPDATE tb_curso 
-    SET ds_curso = :curso,
-    nr_carga_horaria = :nr_carga_horaria,
-    dt_inicio = :dt_inicio
-    WHERE id_curso = :id;";
+    $query = "UPDATE mh_venda
+    SET data_venda = :datavenda,
+    situacao = :situacao,
+    id_func = :id_func,
+    id_Horta = :id_Horta,
+    id_Cliente = :id_Cliente,
+    WHERE id_Venda = :id;";
 
-    $stmt=$conn->prepare($query);
+    $stmt=$conexao->prepare($query);
 
-    $stmt->bindParam(":curso", $curso, PDO::PARAM_STR);
-    $stmt->bindParam(":nr_carga_horaria", $nr_carga_horaria, PDO::PARAM_INT );
-    $stmt->bindParam(":dt_inicio", $dt_inicio, PDO::PARAM_STR);
-    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->bindParam(":data_venda", $data_venda, PDO::PARAM_STR);
+    $stmt->bindParam(":situacao", $situacao, PDO::PARAM_INT );
+    $stmt->bindParam(":id_func", $id_func, PDO::PARAM_STR);
+    $stmt->bindParam(":id_Horta", $id_Horta, PDO::PARAM_STR);
+    $stmt->bindParam(":id_Cliente", $id_Cliente, PDO::PARAM_STR);
+    $stmt->bindParam(":id", $id_Venda, PDO::PARAM_INT);
 
     $stmt->execute();
 
     echo "Alteração efetuada com sucesso";
 
-  } catch (PDOException $e) {
-    echo "ERRO:". $e->getMessage();
+  } catch (PDOException $erro) {
+    echo "ERRO:". $erro->getMessage();
   }
 
 

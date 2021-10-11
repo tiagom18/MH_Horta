@@ -42,56 +42,67 @@
                     <a href="insercao.php" class="btn-add" role="button"></a>
                 </div>
         </div>
+ a
+        <?php
+        try{
+          // lista cursos já cadastrados
+  	$query = "SELECT id_Venda, 
+	date_format(dt_inicio,'%Y-%m-%d') as data_venda 
+    situacao,id_func,
+	id_Horta,
+	id_Cliente,
+	FROM mh_venda";
+
+  	$stmt = $conexao->prepare($query);
+ 
+	  $stmt->execute();
+
+	  echo "<table border='1'>";
+	  echo "<tr>
+	          <th>id</th>
+			  <th>Descrição</th>
+			  <th>Carga Horária</th>
+			  <th>Dt. Início</th>
+			  <th colspan=\"2\">Ações</th>
+			</tr>";
+	  // busca os dados lidos do banco de dados
+	  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $id_Venda = $row["id_Venda"];
+        $data_venda = $row["data_venda"];
+        $situacao = $row["situacao"];
+        $id_func = $row["id_func"];
+        $id_Horta = $row["id_Horta"];
+        $id_Cliente = $row["id_Cliente"];
+		  
+          echo "<td> $id_Venda</td>";
+          echo "<td> $data_venda</td>";
+          echo "<td> $situacao</td>";
+          echo "<td> $id_func</td>";
+          echo "<td> $id_Horta </td>";
+          echo "<td> $id_Cliente</td>";
+		    
+		  // cria link para EXCLUSAO do respectivo id_curso
+		  echo '<td><a href="exclusao.php?id='. $row["id_curso"] . '">Excluir</a></td>';
+		  // cria link para ALTERACAO do respectivo id_curso
+		  echo '<td><a href="form_alteracao.php?id='. $row["id_curso"] . '">Alterar</a></td>';
+		  echo "</tr>";
+	  }
+	  echo "</table>";
+    }catch (PDOException $erro){
+	echo 'Error: '.$erro->getMessage();
+        }
 
 
-<?php
-//tela
-?>
-        <div class="cont-02">
-            <table class="cont-table">
-                <thead>
+?>  
+	<br>
+	<p><a href="form_insercao.html">Cadastrar nova Venda</a></p>
+	<p><a href="../venda/index.php">Retornar para Menu Principal</a></p>
+	</body>
+        
+      
+       
                     
-                    <th class="txt-id">ID</th>
-                    <th class="txt">Data</th>
-                    <th class="txt">Status</th>
-                    <th class="txt">Funcionario</th>
-                    <th class="txt">ID_horta</th>
-                    <th class="txt">ID_Cliente</th>
-                    <th class="txt-actions">Actions</th>
-                </thead>
-                <tbody>
-                <?php
-                    try{
-                        $query = "SELECT * FROM mh_venda";
-
-                        $stmt = $conexao->prepare($query);
-                        $stmt->execute();
-                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            $id_Venda = $row["id_Venda"];
-                            $data_venda = $row["data_venda"];
-                            $status = $row["status"];
-                            $id_func = $row["id_func"];
-                            $id_Horta = $row["id_Horta"];
-                            $id_Cliente = $row["id_Cliente"];
-                            
-                            echo "<tr>";
-                            
-                            echo "<td> $id_Venda</td>";
-                            echo "<td> $data_venda</td>";
-                            echo "<td> $status</td>";
-                            echo "<td> $id_func</td>";
-                            echo "<td> $id_Horta </td>";
-                            echo "<td> $id_Cliente</td>";
-                  
-                            echo '<td><a href="exclusao.php?id='. $row["id_Venda"] . '">Excluir</a></td>';
-                            echo '<td><a href="form_alteracao.php?id='. $row["id_Venda"] . '">Alterar</a></td>';
-                            echo "</tr>";
-                        }
-                    } catch (PDOException $erro){
-                        echo 'Error: '.$erro->getMessage();
-                         }
-                    
-                ?>
+               
                 </tbody>
             </table>
         </div>

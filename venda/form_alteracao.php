@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <!-- form_alteracao.html -->
 <?php
-  include "../inc/conectabd.inc.php";
+  include("../model/conexao.php");
   include "../inc/funcoes.inc.php";
-  $id = $_GET["id"];
-  $linha = le_curso($conn, $id);
+  $id_Venda = $_GET["id"];
+  $linha = le_curso($conexao, $id);
 ?>
 
 <html>
 	<head>
-	  <title>Cadastro de curso</title>
+	  <title>Cadastro de venda</title>
 	  <meta charset="utf-8">
 	</head>
 	<body>
-		<h1>Atualizar curso</h1>
+		<h1>Atualizar venda</h1>
 		<form action="alteracao.php" 
 		      method="GET">
 			  
-			<input type="hidden" name="id" value="<?php echo $linha["id_curso"];?>">
-			<label for="ds_curso">
-			Curso:
+			<input type="hidden" name="id" value="<?php echo $linha["id_Venda"];?>">
+			<label for="data_venda">
+			data_venda:
 			</label>
-			<input type="text" name="curso" id="ds_curso" value="<?php echo $linha["ds_curso"];?>">
+			<input type="date" name="data_venda" id="data_venda" value="<?php echo $linha["data_venda"];?>">
 			<br>
-			<label for="id_nr_carga_horaria">
-			Carga Horária:
+			<label for="status">
+			status:
 			</label>
-			<input type="text" name="nr_carga_horaria" id="id_nr_carga_horaria" value="<?php echo $linha["nr_carga_horaria"];?>">
+			<input type="text" name="status" id="status" value="<?php echo $linha["status"];?>">
 			<br>
-			<label for="id_dt_inicio">
-			Data Início:
+			<label for="id_func">
+			id_func:
 			</label>
-			<input type="date" name="dt_inicio" id="id_dt_inicio" value="<?php echo $linha["dt_inicio"];?>">
+			<input type="txt" name="id_func" id="id_func" value="<?php echo $linha["id_func"];?>">
+			<br>
+			<label for="id_Horta">
+			id_Horta:
+			</label>
+			<input type="txt" name="id_Horta" id="id_Horta" value="<?php echo $linha["id_Horta"];?>">
+			<br>
+			id_Cliente:
+			</label>
+			<input type="txt" name="id_Cliente" id="id_Cliente" value="<?php echo $linha["id_Cliente"];?>">
 			<br>
 			<input type="submit" value="Ok">
 		</form>

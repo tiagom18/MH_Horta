@@ -7,26 +7,26 @@
 	</head>
 	<body><?php //exclusao.php
 // efetua a exclusão do curso cujo id seja informado.
-  $id = $_GET["id"];
+  $id_Venda = $_GET["id"];
   
-  include_once "../inc/conectabd.inc.php";
+  include("../model/conexao.php");
 
   try{
-    $query = "delete from tb_curso where id_curso=:id;";
-    $stmt = $conn->prepare($query);
-    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $query = "delete from mh_venda where id_Venda=:id;";
+    $stmt = $conexao->prepare($query);
+    $stmt->bindParam(":id", $id_Venda, PDO::PARAM_INT);
     $stmt->execute();
     echo "Exclusão efetuada com sucesso";
 
-  } catch (PDOException $e) {
-	  echo "ERRO:". $e->getMessage();
+  } catch (PDOException $erro) {
+	  echo "ERRO:". $erro->getMessage();
   }
 
 
   
  ?>  
  <br>
- <a href="index.php">Ver cursos cadastrados</a>
+ <a href="index.php">Ver vendas cadastrados</a>
  
  </body>
 </html>

@@ -1,69 +1,35 @@
-
-
 <?php  
-     include("../model/conexao.php");
-function le_venda($conexao, $id){  
+
+function le_curso($conexao, $id_Venda){  
   $row = array();
+  
   try{
-	$query = "SELECT id_Venda, date_format(dt_inicio,'%Y-%m-%d') as data_venda FROM mh_venda, 
-	'status', id_func, id_Horta, id_Cliente FROM mh_vendas WHERE id_Vendas = :id;";
-	
+	$query = " SELECT id_Venda, 
+	date_format(dt_inicio,'%Y-%m-%d') as data_venda 
+	situacao, 
+	id_func,
+	id_Horta,
+	id_Cliente,
+	FROM mh_venda 
+	where id_Venda = :id;";
 	$stmt=$conexao->prepare($query);
-	$stmt->bindParam(":id", $id, PDO::PARAM_INT);
+	$stmt->bindParam(":id", $id_Venda, PDO::PARAM_INT);
 	$stmt->execute();
 	if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			return $row;
-	}
+	 }
   } catch(PDOException $erro) {
-    echo 'ERROR: ' . $erro->getMessage();
+    echo 'ERROR: ' . $erro->getMessage(); 
   }
 
 }
-//troca para os valores de produto
-function monta_select_Venda($conexao, $id_venda=0){
-		
-	// lista cursos já cadastrados
-	try{
-		$query = "SELECT id_Venda, date_format(dt_inicio,'%Y-%m-%d') as data_venda FROM mh_venda, 
-		'status', id_func, id_Horta, id_Cliente FROM mh_Venda ORDER BY id_Venda;";
-		$stmt=$conexao->prepare($query);
-		$stmt->execute();
-		echo "<select name=\"id_venda\">";
-		// busca os dados lidos do banco de dados		
-		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$id_Venda = $row["id_Venda"];
-			$data_venda = $row["data_venda"];			
-			$status = $row["status"];	
-			$id_func = $row["id_func"];
-			$id_Horta = $row["id_Horta"];
-			$id_Cliente = $row["id_Cliente"];
-
-			$selected = "";
-			if ($id_Venda == $id_venda) {
-				$selected = "selected";
-			}					
-			echo "<option value=\"$id_Venda\" $selected>" . $status . '</option>';
-		}
-		 echo "</select>";
-	  } catch(PDOException $erro) {
-		echo 'ERROR: ' . $erro->getMessage(); 
-	  }
-
-}
 
 
-
-
-
-
-
-function le_produto($conexao, $id){  
+function le_aluno($conexao, $id){  
 	$row = array();
   
 	try{
-		$query = "INSERT INTO mh_produto 
-		(id_Produto, valor, nome, descricao, tipo, estoque ) 
-		values (:id_Produto, :valor, :nome, :descricao, :tipo, :estoque);";
+	  $query = " SELECT id_aluno, ds_aluno, id_curso FROM tb_aluno WHERE id_aluno = :id;";
 	  $stmt=$conexao->prepare($query);
 	  $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 	  $stmt->execute();
@@ -75,24 +41,24 @@ function le_produto($conexao, $id){
 	}
   
 }
-//alterar os valores para venda
-function monta_select_curso($con, $id_curso_selecionado=0){
+
+function monta_select_curso($conexao, $id_Venda_selecionado=0){
 		
 	// lista cursos já cadastrados
 	try{
-		$query = "SELECT id_curso, ds_curso FROM tb_curso ORDER BY ds_curso;";
-		$stmt=$con->prepare($query);
+		$query = " SELECT id_Venda, id_Cliente FROM tb_curso ORDER BY id_Cliente;";
+		$stmt=$conexao->prepare($query);
 		$stmt->execute();
-		echo "<select name=\"id_curso\">";
+		echo "<select name=\"id_Venda\">";
 		// busca os dados lidos do banco de dados		
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$id = $row["id_curso"];
-			$curso = $row["ds_curso"];	
+			$id = $row["id_Venda"];
+			$cliente = $row["id_Cliente"];	
 			$selected = "";
-			if ($id == $id_curso_selecionado) {
+			if ($id == $id_Venda_selecionado) {
 				$selected = "selected";
 			}					
-			echo "<option value=\"$id\" $selected>" . $curso . '</option>';
+			echo "<option value=\"$id\" $selected>" . $cliente . '</option>';
 		}
 		 echo "</select>";
 	  } catch(PDOException $erro) {
@@ -100,5 +66,5 @@ function monta_select_curso($con, $id_curso_selecionado=0){
 	  }
 
 }
-//acrescentar funçoes para as outras tabelas
+
 ?>  
