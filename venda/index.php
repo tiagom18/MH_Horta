@@ -1,7 +1,7 @@
 <?php
     include("../model/conexao.php");
     include("../model/screen/index.php");
-    include("../model/conexao.php");
+    
     
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@
                         <img class="filter-img" src="https://i.ibb.co/6v6P822/filter.png" alt="filter" border="0">
                     </div>
                     <select class="filter-select"></select>
-                    <a href="inserir.php" class="btn-add" role="button"></a>
+                    <a href="insercao.php" class="btn-add" role="button"></a>
                 </div>
         </div>
         <div class="cont-02">
