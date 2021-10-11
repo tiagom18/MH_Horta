@@ -42,6 +42,11 @@
                     <a href="insercao.php" class="btn-add" role="button"></a>
                 </div>
         </div>
+
+
+<?php
+//tela
+?>
         <div class="cont-02">
             <table class="cont-table">
                 <thead>
