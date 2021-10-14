@@ -10,23 +10,23 @@
 // efetua inclusao do curso informado em cadatro_curso.html
 
 
-$data_venda = $_GET["datavenda"];
+$data_venda = $_GET["data_venda"];
 $situacao = $_GET["situacao"];
-$id_func = $_GET["idfunc"];
-$id_Horta = $_GET["idhorta"];
-$id_Cliente = $_GET["idcliente"];
+$id_func = $_GET["id_func"];
+$id_Horta = $_GET["id_Horta"];
+$id_Cliente = $_GET["id_Cliente"];
   
   
   include("../model/conexao.php");
 
   try {
 	$query = "INSERT INTO mh_venda
-	(datavenda, situacao, id_func, id_Horta, id_Cliente) 
-	values (:datavenda, :situacao, :id_func, :id_Horta, :id_Cliente);";
+	(data_venda, situacao, id_func, id_Horta, id_Cliente) 
+	values (:data_venda, :situacao, :id_func, :id_Horta, :id_Cliente);";
 
 	$stmt=$conexao->prepare($query);
 
-	$stmt->bindParam(":datavenda", $datavenda, PDO::PARAM_STR);
+	$stmt->bindParam(":data_venda", $data_venda, PDO::PARAM_STR);
 	$stmt->bindParam(":situacao", $situacao, PDO::PARAM_STR);
 	$stmt->bindParam(":id_func", $id_func, PDO::PARAM_STR);
 	$stmt->bindParam(":id_Horta", $id_Horta, PDO::PARAM_INT );

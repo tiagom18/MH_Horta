@@ -42,16 +42,12 @@
                     <a href="insercao.php" class="btn-add" role="button"></a>
                 </div>
         </div>
- a
+ 
         <?php
         try{
           // lista cursos já cadastrados
   	$query = "SELECT id_Venda, 
-	date_format(dt_inicio,'%Y-%m-%d') as data_venda 
-    situacao,id_func,
-	id_Horta,
-	id_Cliente,
-	FROM mh_venda";
+	date_format(data_venda,'%Y-%m-%d') as data_venda, situacao,id_func, id_Horta, id_Cliente FROM mh_venda";
 
   	$stmt = $conexao->prepare($query);
  
@@ -82,9 +78,9 @@
           echo "<td> $id_Cliente</td>";
 		    
 		  // cria link para EXCLUSAO do respectivo id_curso
-		  echo '<td><a href="exclusao.php?id='. $row["id_curso"] . '">Excluir</a></td>';
+		  echo '<td><a href="exclusao.php?id='. $row["id_Venda"] . '">Excluir</a></td>';
 		  // cria link para ALTERACAO do respectivo id_curso
-		  echo '<td><a href="form_alteracao.php?id='. $row["id_curso"] . '">Alterar</a></td>';
+		  echo '<td><a href="form_alteracao.php?id='. $row["id_Venda"] . '">Alterar</a></td>';
 		  echo "</tr>";
 	  }
 	  echo "</table>";

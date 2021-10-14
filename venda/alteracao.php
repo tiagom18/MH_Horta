@@ -9,7 +9,7 @@
 <?php 
 // efetua alteração do curso informado em form_alteracao.php
   $id_Venda = $_GET["id"];
-  $data_venda = $_GET["datavenda"];
+  $data_venda = $_GET["data_venda"];
   $situacao = $_GET["situacao"];
   $id_func = $_GET["idfunc"];
   $id_Horta = $_GET["idhorta"];
@@ -18,7 +18,7 @@
 
   try{
     $query = "UPDATE mh_venda
-    SET data_venda = :datavenda,
+    SET data_venda = :data_venda,
     situacao = :situacao,
     id_func = :id_func,
     id_Horta = :id_Horta,

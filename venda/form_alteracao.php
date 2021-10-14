@@ -23,10 +23,10 @@
 			</label>
 			<input type="date" name="data_venda" id="data_venda" value="<?php echo $linha["data_venda"];?>">
 			<br>
-			<label for="status">
-			status:
+			<label for="situacao">
+			situacao:
 			</label>
-			<input type="text" name="status" id="status" value="<?php echo $linha["status"];?>">
+			<input type="text" name="situacao" id="situacao" value="<?php echo $linha["situacao"];?>">
 			<br>
 			<label for="id_func">
 			id_func:
