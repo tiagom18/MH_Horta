@@ -1,16 +1,11 @@
 <?php  
 
-function le_curso($conexao, $id_Venda){  
+function le_venda($conexao, $id_Venda){  
   $row = array();
   
   try{
 	$query = " SELECT id_Venda, 
-	date_format(dt_inicio,'%Y-%m-%d') as data_venda 
-	situacao, 
-	id_func,
-	id_Horta,
-	id_Cliente,
-	FROM mh_venda 
+	date_format(data_venda,'%Y-%m-%d') as data_venda, situacao,id_func,id_Horta,id_Cliente FROM mh_venda 
 	where id_Venda = :id;";
 	$stmt=$conexao->prepare($query);
 	$stmt->bindParam(":id", $id_Venda, PDO::PARAM_INT);
@@ -42,9 +37,9 @@ function le_aluno($conexao, $id){
   
 }
 
-function monta_select_curso($conexao, $id_Venda_selecionado=0){
+function monta_select_venda($conexao, $id_Venda_selecionado = 0){
 		
-	// lista cursos já cadastrados
+	// lista vendas já cadastrados
 	try{
 		$query = " SELECT id_Venda, id_Cliente FROM tb_curso ORDER BY id_Cliente;";
 		$stmt=$conexao->prepare($query);

@@ -2,9 +2,9 @@
 <!-- form_alteracao.html -->
 <?php
   include("../model/conexao.php");
-  include "../inc/funcoes.inc.php";
+  include ("../model/funcoes.inc.php");
   $id_Venda = $_GET["id"];
-  $linha = le_curso($conexao, $id);
+  $linha = le_venda($conexao, $id_Venda);
 ?>
 
 <html>

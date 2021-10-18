@@ -11,9 +11,9 @@
   $id_Venda = $_GET["id"];
   $data_venda = $_GET["data_venda"];
   $situacao = $_GET["situacao"];
-  $id_func = $_GET["idfunc"];
-  $id_Horta = $_GET["idhorta"];
-  $id_Cliente = $_GET["idclient"];
+  $id_func = $_GET["id_func"];
+  $id_Horta = $_GET["id_Horta"];
+  $id_Cliente = $_GET["id_Cliente"];
   include("../model/conexao.php");
 
   try{
