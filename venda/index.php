@@ -56,9 +56,11 @@
 	  echo "<table border='1'>";
 	  echo "<tr>
 	          <th>id</th>
-			  <th>Descrição</th>
-			  <th>Carga Horária</th>
-			  <th>Dt. Início</th>
+			  <th>data venda</th>
+			  <th>situação</th>
+			  <th>ID funcionario</th>
+              <th>ID Horta</th>
+              <th>ID Cliente</th>
 			  <th colspan=\"2\">Ações</th>
 			</tr>";
 	  // busca os dados lidos do banco de dados
