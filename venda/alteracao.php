@@ -19,10 +19,10 @@
   try{
     $query = "UPDATE mh_venda
     SET data_venda = :data_venda,
-    situacao = :situacao,
+     situacao = :situacao,
     id_func = :id_func,
     id_Horta = :id_Horta,
-    id_Cliente = :id_Cliente,
+    id_Cliente = :id_Cliente
     WHERE id_Venda = :id;";
 
     $stmt=$conexao->prepare($query);

@@ -26,6 +26,7 @@ $id_Cliente = $_GET["id_Cliente"];
 
 	$stmt=$conexao->prepare($query);
 
+	
 	$stmt->bindParam(":data_venda", $data_venda, PDO::PARAM_STR);
 	$stmt->bindParam(":situacao", $situacao, PDO::PARAM_STR);
 	$stmt->bindParam(":id_func", $id_func, PDO::PARAM_STR);
