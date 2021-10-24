@@ -446,3 +446,23 @@ hr {
     margin-right: 2px;
     cursor: pointer;
 }
+
+.dropbox{
+    display: block;
+    font-weight: 500;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    color: #A49B9B;
+    margin-bottom: 4px;
+}
+
+.btn blue {
+    position: absolute;
+    width: 84px;
+    height: 28px;
+    left: 217px;
+    top: 217px;
+
+    background: #5089C6;
+    border-radius: 6px;
+}

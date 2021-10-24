@@ -1,5 +1,5 @@
 <?php
-    include("../model/conexao.php");
+    include("./../model/conexao.php");
     include("../model/screen/index.php");
 ?>
 <!DOCTYPE html>
@@ -17,6 +17,7 @@
 </head>
 <body>
 <div class="crud">
+    <!--inicio - barra superior-->
     <div class="cont-barra">
         <div class="cont-pesquisa">
             <a href="#">
@@ -29,6 +30,7 @@
             <p class="usuario-text">Administrador</p>
         </div>
     </div>
+    <!--fim - barra superior-->
     <div class="cont-crud">
         <div class="cont-01">
             <span class="title-venda">Pedido</span>
@@ -43,12 +45,6 @@
         <div class="cont-02">
             <table class="cont-table">
                 <thead>
-                    <th>
-                        <label class="conectado">
-                            <input type="checkbox" value="conectado">
-                            <span class="checkmark"></span>
-                        </label>
-                    </th>
                     <th class="txt-id">ID</th>
                     <th class="txt">Produto</th>
                     <th class="txt">Quantidade</th>
@@ -56,6 +52,33 @@
                     <th class="txt">Valor Total</th>
                     <th class="txt-actions">Actions</th>
                 </thead>
+                <tbody>
+                    <th></th>
+                    <?php
+                        try {
+                            $stmt = $conexao->prepare("SELECT * FROM mh_pedido");
+                            if ($stmt->execute()) {
+                                while ($rs = $stmt->fetch(PDO::FETCH_OBJ)) {
+                                    ?><tr>
+                                        <td><?php echo $rs->quantidade; ?></td>
+                                        <td><?php echo $rs->id_Produto; ?></td>
+                                        <td><center>
+                                        <a href="?act=upd&id=<?php echo $rs->id_Pedido; ?>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                                        <a href="?act=del&id=<?php echo $rs->id_Pedido; ?>" class="btn btn-danger btn-xs" ><span class="glyphicon glyphicon-remove"></span> Excluir</a>
+                                        </center>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            } else {
+                                echo "Erro: Não foi possível recuperar os dados do banco de dados";
+                            }
+                        } catch (PDOException $erro) {
+                            echo "Erro: " . $erro->getMessage();
+                        }
+
+                    ?>
+                </tbody>
             </table>
         </div>
         <div class="cont-04"></div>
@@ -69,10 +92,37 @@
             <div class="cont-info">
                 <span class="txt-form">Inserir</span>
                 <hr>
-                <form>
+                <!---->
+                <form method="POST" action="../action/insert-adm.php?act=save">
                     <div class="form-id">
-                        <label for="id">ID</label>
-                        <input id="id" class="input-id" name="id" type="number" value="">
+                        <label for="qde">Quantidade</label>
+                        <input id="qde" class="input-id" name="qde" type="number" value="">
+                    </div>
+                    <div class="dropbox">
+                        <!--Pegando as opções no banco -->
+                        <?php
+                            $sql = " SELECT nome FROM mh_produto";
+                            try {
+                                $stmt = $conexao -> prepare($sql);
+                                $stmt -> execute();
+                                $results = $stmt -> fetchAll();
+                            }
+                            catch(Exception $ex){
+                                echo ($ex -> getMessage());
+                        
+                            }
+                        ?>
+                        <!--Apresentando as opções em forma de dropbox-->
+                        <label for="id">Produto</label>
+                        <select id="produto" name="produto">
+                            <option>Produto</option>
+                            <?php foreach($results as $output) {?>
+                            <option><?php echo $output["nome"];?></option>
+                            <?php } ?>
+                        </select>
+                        <hr>
+                        <button class="">Inserir</button>
+                        <button href="index.php"class="">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -96,6 +146,5 @@
             openModal('modal-update');
         })
     </script>
-<!--pegar os style das classes que eu copiei-->
 </body>
 </html>
