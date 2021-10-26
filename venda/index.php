@@ -46,8 +46,9 @@
         <?php
         try{
           // lista cursos já cadastrados
-  	$query = "SELECT id_Venda, 
-	date_format(data_venda,'%Y-%m-%d') as data_venda, situacao,id_func, id_Horta, id_Cliente FROM mh_venda";
+         
+      $query = "SELECT mh_venda.id_Venda, 
+	date_format(data_venda,'%Y-%m-%d') as data_venda, mh_venda.situacao, mh_venda.id_func, mh_venda.id_Horta, mh_venda.id_Cliente FROM mh_venda  ";
 
   	$stmt = $conexao->prepare($query);
  

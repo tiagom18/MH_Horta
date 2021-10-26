@@ -19,7 +19,12 @@ $id_Cliente = $_GET["id_Cliente"];
   
   include("../model/conexao.php");
 
+
   try {
+
+	$query = "SELECT mh_venda.id_Venda, 
+	date_format(data_venda,'%Y-%m-%d') as data_venda, mh_venda.situacao, mh_venda.id_func, mh_venda.id_Horta, mh_venda.id_Cliente, mh_Cliente.nome FROM mh_venda  join mh_cliente  on mh_venda.id_Cliente = mh_Cliente.nome ";
+  	
 	$query = "INSERT INTO mh_venda
 	(data_venda, situacao, id_func, id_Horta, id_Cliente) 
 	values (:data_venda, :situacao, :id_func, :id_Horta, :id_Cliente);";

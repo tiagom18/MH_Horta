@@ -20,7 +20,7 @@ function le_venda($conexao, $id_Venda){
 }
 
 
-function le_aluno($conexao, $id){  
+function le_pedido($conexao, $id){  
 	$row = array();
   
 	try{
@@ -41,7 +41,7 @@ function monta_select_venda($conexao, $id_Venda_selecionado = 0){
 		
 	// lista vendas já cadastrados
 	try{
-		$query = " SELECT id_Venda, id_Cliente FROM tb_curso ORDER BY id_Cliente;";
+		$query = " SELECT id_Venda, id_Cliente FROM mh_venda ORDER BY id_Cliente;";
 		$stmt=$conexao->prepare($query);
 		$stmt->execute();
 		echo "<select name=\"id_Venda\">";
