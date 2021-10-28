@@ -81,38 +81,54 @@
                 </tbody>
             </table>
         </div>
-        <div class="cont-04"></div>
-    </div>
-    <!--inicio pop up-->
-    <div id="modal-update" class="cont-modal">
-        <div class="modal">
-            <button id="exit" class="btn-exit">
-                <img class="exit-img" src="https://i.postimg.cc/8zY4r6HD/close.png" alt="exit" border="0">
-            </button>
-            <div class="cont-info">
-                <span class="txt-form">Inserir</span>
-                <hr>
-                <!---->
-                <form method="POST" action="../action/insert-adm.php?act=save">
-                    <div class="form-id">
-                        <label for="qde">Quantidade</label>
-                        <input id="qde" class="input-id" name="qde" type="number" value="">
-                    </div>
-                    <div class="dropbox">
-                        <!--Pegando as opções no banco -->
-                        <?php
-                            $sql = " SELECT nome FROM mh_produto";
-                            try {
-                                $stmt = $conexao -> prepare($sql);
-                                $stmt -> execute();
-                                $results = $stmt -> fetchAll();
-                            }
-                            catch(Exception $ex){
-                                echo ($ex -> getMessage());
-                        
-                            }
-                        ?>
-                        <!--Apresentando as opções em forma de dropbox-->
+        <div class="cont-04">
+        <?php
+        try{
+          // lista vendas já cadastrados
+         
+      $query = "SELECT mh_venda.id_Venda, 
+	date_format(data_venda,'%Y-%m-%d') as data_venda, mh_venda.situacao, mh_venda.id_func, mh_venda.id_Horta, mh_venda.id_Cliente FROM mh_venda  ";
+
+  	$stmt = $conexao->prepare($query);
+ 
+	  $stmt->execute();
+
+	  echo "<table border='1'>";
+	  echo "<tr>
+	          <th>id</th>
+			  <th>Produto</th>
+              <th>Quantidade</th>
+              <th>Valor Un</th>
+              <th>Valor Total</th>
+			 
+			  <th colspan=\"2\">Ações</th>
+			</tr>";
+	  // busca os dados lidos do banco de dados
+	  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $id_Venda = $row["id_Venda"];
+        
+		  
+          echo "<td> $id_Venda</td>";
+         
+		    
+		  // cria link para EXCLUSAO do respectivo id_curso
+		  echo '<td><a href="exclusao.php?id='. $row["id_Venda"] . '">Excluir</a></td>';
+		  // cria link para ALTERACAO do respectivo id_curso
+		  echo '<td><a href="form_alteracao.php?id='. $row["id_Venda"] . '">Alterar</a></td>';
+		  echo "</tr>";
+	  }
+	  echo "</table>";
+    }catch (PDOException $erro){
+	echo 'Error: '.$erro->getMessage();
+        }
+
+
+?>  
+        </div>
+    
+    
+    
+                        <!--Apresentando as opções em forma de dropbox
                         <label for="id">Produto</label>
                         <select id="produto" name="produto">
                             <option>Produto</option>
@@ -124,27 +140,6 @@
                         <button class="">Inserir</button>
                         <button href="index.php"class="">Cancelar</button>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script>
-        function openModal(modalID) {
-            const modal = document.getElementById(modalID);
-                if(modal) {
-                    modal.classList.add('mostrar');
-                    modal.addEventListener('click', (event) => {
-                    if(event.target.id == modalID || event.target.className == 'exit-img') {
-                        modal.classList.remove('mostrar');
-                    }
-                })
-            }
-        }
-
-        const add = document.querySelector('.btn-add');
-        add.addEventListener('click', function() {
-            openModal('modal-update');
-        })
-    </script>
+                        -->
 </body>
 </html>

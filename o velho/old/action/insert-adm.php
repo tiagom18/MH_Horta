@@ -1,5 +1,5 @@
 <?php
-require ("./../model/conexao.php");
+require ("../model/conexao.php");
 
 
 // Bloco If que Salva os dados no Banco - atua como Create e Update
