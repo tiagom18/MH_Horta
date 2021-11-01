@@ -9,12 +9,11 @@
 <?php 
 // efetua inclusao do curso informado em cadatro_curso.html
 
-
-$data_venda = $_GET["data_venda"];
-$situacao = $_GET["situacao"];
-$id_func = $_GET["id_func"];
-$id_Horta = $_GET["id_Horta"];
-$id_Cliente = $_GET["id_Cliente"];
+  $id_Venda = $_GET["id_Venda"];
+  $quantidade = $_GET["quantidade"];
+  $id_Produto = $_GET["id_Produto"];
+  
+  $id_Cliente = $_GET["id_Cliente"];
   
   
   include("../model/conexao.php");
@@ -22,21 +21,20 @@ $id_Cliente = $_GET["id_Cliente"];
 
   try {
 
-	$query = "SELECT mh_venda.id_Venda, 
-	date_format(data_venda,'%Y-%m-%d') as data_venda, mh_venda.situacao, mh_venda.id_func, mh_venda.id_Horta, mh_venda.id_Cliente, mh_Cliente.nome FROM mh_venda  join mh_cliente  on mh_venda.id_Cliente = mh_Cliente.nome ";
+	$query = "SELECT id_Pedido, quantidade, id_Venda, id_Cliente, id_Produto FROM mh_pedido  ";
   	
-	$query = "INSERT INTO mh_venda
-	(data_venda, situacao, id_func, id_Horta, id_Cliente) 
-	values (:data_venda, :situacao, :id_func, :id_Horta, :id_Cliente);";
+	$query = "INSERT INTO mh_pedido
+	(id_Pedido, quantidade, id_Venda, id_Cliente, id_Produto) 
+	values (:id_Pedido, :quantidade, :id_Venda, :id_Cliente, :id_Produto);";
 
 	$stmt=$conexao->prepare($query);
 
 	
-	$stmt->bindParam(":data_venda", $data_venda, PDO::PARAM_STR);
-	$stmt->bindParam(":situacao", $situacao, PDO::PARAM_STR);
-	$stmt->bindParam(":id_func", $id_func, PDO::PARAM_STR);
-	$stmt->bindParam(":id_Horta", $id_Horta, PDO::PARAM_INT );
+	$stmt->bindParam(":id_Pedido", $id_Pedido, PDO::PARAM_STR);
+	$stmt->bindParam(":quantidade", $quantidade, PDO::PARAM_STR);
+	$stmt->bindParam(":id_Venda", $id_Venda, PDO::PARAM_STR);
 	$stmt->bindParam(":id_Cliente", $id_Cliente, PDO::PARAM_STR);
+	$stmt->bindParam(":id_Produto", $id_Produto, PDO::PARAM_INT );
 	$stmt->execute();
 	echo "Inclusão efetuada com sucesso";
 

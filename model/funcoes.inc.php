@@ -24,7 +24,7 @@ function le_pedido($conexao, $id_Pedido){
 	$row = array();
   
 	try{
-	  $query = " SELECT id_Venda,quantidade FROM mh_pedido WHERE id_aluno = :id;";
+	  $query = "SELECT id_Pedido, quantidade, id_Venda, id_Cliente, id_Produto FROM mh_pedido WHERE id_Pedido = :id;";
 	  $stmt=$conexao->prepare($query);
 	  $stmt->bindParam(":id", $id_Pedido, PDO::PARAM_INT);
 	  $stmt->execute();

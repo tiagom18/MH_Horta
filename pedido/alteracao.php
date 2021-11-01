@@ -12,6 +12,7 @@
   $quantidade = $_GET["quantidade"];
   $id_Produto = $_GET["id_Produto"];
   $id_Pedido = $_GET["id"];
+  $id_Cliente = $_GET["id_Cliente"];
   
   include("../model/conexao.php");
 
@@ -20,6 +21,7 @@
     quantidade = :quantidade,
     id_Produto = :id_Produto,
     id_Venda = :id_Venda,
+    id_Cliente = :id_Cliente
     WHERE id_Pedido = :id;";
 
     $stmt=$conexao->prepare($query);
@@ -29,6 +31,7 @@
     $stmt->bindParam(":id_Produto", $id_Produto, PDO::PARAM_STR);
     $stmt->bindParam(":id_Venda", $id_Venda, PDO::PARAM_INT);
     $stmt->bindParam(":id", $id_Pedido, PDO::PARAM_STR);
+    $stmt->bindParam(":id_Cliente", $id_Cliente, PDO::PARAM_INT );
 
     $stmt->execute();
 

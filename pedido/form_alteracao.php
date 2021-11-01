@@ -3,8 +3,8 @@
 <?php
   include("../model/conexao.php");
   include ("../model/funcoes.inc.php");
-  $id_Venda = $_GET["id"];
-  $linha = le_venda($conexao, $id_Venda);
+  $id_Pedido = $_GET["id"];
+  $linha = le_pedido($conexao, $id_Pedido);
 ?>
 
 <html>
@@ -17,31 +17,28 @@
 		<form action="alteracao.php" 
 		      method="GET">
 			  
-			<input type="hidden" name="id" value="<?php echo $linha["id_Venda"];?>">
-			<label for="data_venda">
-			data_venda:
+			<input type="hidden" name="id" value="<?php echo $linha["id_Pedido"];?>">
+			<label for="id_Pedido">
+			quantidade:
 			</label>
-			<input type="date" name="data_venda" id="data_venda" value="<?php echo $linha["data_venda"];?>">
+			<input type="text" name="quantidade" id="quantidade" value="<?php echo $linha["quantidade"];?>">
 			<br>
-			<label for="situacao">
-			situacao:
+			<label for="id_Venda">
+			id_Venda:
 			</label>
-			<input type="text" name="situacao" id="situacao" value="<?php echo $linha["situacao"];?>">
+			<input type="text" name="id_Venda" id="id_Venda" value="<?php echo $linha["id_Venda"];?>">
 			<br>
-			<label for="id_func">
-			id_func:
-			</label>
-			<input type="txt" name="id_func" id="id_func" value="<?php echo $linha["id_func"];?>">
-			<br>
-			<label for="id_Horta">
-			id_Horta:
-			</label>
-			<input type="txt" name="id_Horta" id="id_Horta" value="<?php echo $linha["id_Horta"];?>">
-			<br>
+			<label for="id_Cliente">
 			id_Cliente:
 			</label>
 			<input type="txt" name="id_Cliente" id="id_Cliente" value="<?php echo $linha["id_Cliente"];?>">
 			<br>
+			<label for="id_Produto">
+			id_Produto:
+			</label>
+			<input type="txt" name="id_Produto" id="id_Produto" value="<?php echo $linha["id_Produto"];?>">
+			<br>
+			
 			<input type="submit" value="Ok">
 		</form>
 	</body>

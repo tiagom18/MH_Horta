@@ -45,7 +45,7 @@
  
         <?php
         try{
-          // lista cursos já cadastrados
+          // lista vendas já cadastrados
          
       $query = "SELECT mh_venda.id_Venda, 
 	date_format(data_venda,'%Y-%m-%d') as data_venda, mh_venda.situacao, mh_venda.id_func, mh_venda.id_Horta, mh_venda.id_Cliente FROM mh_venda  ";
@@ -84,6 +84,7 @@
 		  echo '<td><a href="exclusao.php?id='. $row["id_Venda"] . '">Excluir</a></td>';
 		  // cria link para ALTERACAO do respectivo id_curso
 		  echo '<td><a href="form_alteracao.php?id='. $row["id_Venda"] . '">Alterar</a></td>';
+          echo '<td><a href="../pedido/index.php">fazer pedido</a></td>';
 		  echo "</tr>";
 	  }
 	  echo "</table>";
