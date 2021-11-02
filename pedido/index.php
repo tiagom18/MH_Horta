@@ -45,7 +45,7 @@
         try{
           // lista vendas já cadastrados
          
-      $query = "SELECT a.id_Venda, b.nome, c.id_Horta, a.id_func, a.situacao, a.data_venda FROM mh_venda as a INNER JOIN mh_cliente as b on a.id_Cliente = b.id_Cliente INNER JOIN mh_horta as c on a.id_Horta = c.id_Horta; ";
+      $query = "SELECT id_Pedido, quantidade, id_Venda, id_Cliente, id_Produto FROM mh_pedido  ";
 
   	$stmt = $conexao->prepare($query);
  
