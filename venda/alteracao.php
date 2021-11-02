@@ -45,7 +45,7 @@
 
 ?>  
  <br>
- <a href="index.php">Ver cursos cadastrados</a>
+ <a href="index.php">Ver Vendas cadastradas</a>
  
  </body>
 </html>

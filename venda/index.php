@@ -47,8 +47,9 @@
         try{
           // lista vendas já cadastrados
          
-      $query = "SELECT mh_venda.id_Venda, 
-	date_format(data_venda,'%Y-%m-%d') as data_venda, mh_venda.situacao, mh_venda.id_func, mh_venda.id_Horta, mh_venda.id_Cliente FROM mh_venda  ";
+      $query = "SELECT a.id_Cliente, a.id_Venda, b.nome, c.id_Horta, a.id_func, a.situacao, a.data_venda FROM mh_venda as a 
+      INNER JOIN mh_cliente as b on a.id_Cliente = b.id_Cliente 
+      INNER JOIN mh_horta as c on a.id_Horta = c.id_Horta;";
 
   	$stmt = $conexao->prepare($query);
  
@@ -61,7 +62,7 @@
 			  <th>situação</th>
 			  <th>ID funcionario</th>
               <th>ID Horta</th>
-              <th>ID Cliente</th>
+              <th>Nome Cliente</th>
 			  <th colspan=\"2\">Ações</th>
 			</tr>";
 	  // busca os dados lidos do banco de dados
@@ -71,14 +72,14 @@
         $situacao = $row["situacao"];
         $id_func = $row["id_func"];
         $id_Horta = $row["id_Horta"];
-        $id_Cliente = $row["id_Cliente"];
+        $nome_cliente = $row["nome"];
 		  
           echo "<td> $id_Venda</td>";
           echo "<td> $data_venda</td>";
           echo "<td> $situacao</td>";
           echo "<td> $id_func</td>";
           echo "<td> $id_Horta </td>";
-          echo "<td> $id_Cliente</td>";
+          echo "<td> $nome_cliente</td>";
 		    
 		  // cria link para EXCLUSAO do respectivo id_curso
 		  echo '<td><a href="exclusao.php?id='. $row["id_Venda"] . '">Excluir</a></td>';
