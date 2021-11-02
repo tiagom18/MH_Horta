@@ -9,7 +9,7 @@
 
 <html>
 	<head>
-	  <title>Cadastro de venda</title>
+	  <title>Cadastro de pedido</title>
 	  <meta charset="utf-8">
 	</head>
 	<body>

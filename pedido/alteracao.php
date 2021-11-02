@@ -2,7 +2,7 @@
 <!-- alteracao.php -->
 <html>
 	<head>
-	  <title>Cadastro de vendas - Alteração</title>
+	  <title>Cadastro de pedidos- Alteração</title>
 	  <meta charset="utf-8">
 	</head>
 	<body>

@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venda</title>
+    <title>Pedido</title>
 </head>
 <body>
 <div class="crud">
@@ -31,7 +31,7 @@
     </div>
     <div class="cont-crud">
         <div class="cont-01">
-            <span class="title-venda">Venda</span>
+            <span class="title-venda">Pedido</span>
                 <div class="cont-filter">
                     <div class="filter">
                         <img class="filter-img" src="https://i.ibb.co/6v6P822/filter.png" alt="filter" border="0">

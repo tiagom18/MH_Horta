@@ -2,7 +2,7 @@
 <!-- cadastro.html -->
 <html>
 	<head>
-	  <title>Cadastro de curso - Exclusão</title>
+	  <title>Cadastro de pedido - Exclusão</title>
 	  <meta charset="utf-8">
 	</head>
 	<body><?php //exclusao.php

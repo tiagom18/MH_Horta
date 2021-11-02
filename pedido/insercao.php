@@ -2,7 +2,7 @@
 <!-- inclusao.php -->
 <html>
 	<head>
-	  <title>Cadastro de Vendas</title>
+	  <title>Cadastro de Pedidos</title>
 	  <meta charset="utf-8">
 	</head>
 	<body>
