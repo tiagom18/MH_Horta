@@ -1,4 +1,4 @@
-<?php include('../model/conexao.php');
+<?php include('../../model/conexao.php');
 
 ?>
 <!DOCTYPE html>
